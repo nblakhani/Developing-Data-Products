@@ -1,0 +1,62 @@
+---
+title: "R Markdown & Plotly Assignment"
+author: "Narinder Lakhani"
+date: "30 January 2018"
+output:
+  slidy_presentation: default
+  ioslides_presentation: default
+---
+
+```{r setup, include=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+## Executive Summary
+
+This assignment creates a web page presentation using R Markdown that features an **interactive plot** created with Plotly. The assignment downloads and uses world pollution data (PM10 levels by country) to show most pollution levels across the world. 
+
+```{r load libraries,warning=FALSE,message=FALSE,echo=FALSE}
+library(plotly)
+library(readxl)
+library(dplyr)
+```
+
+#### Data description  
+
+
+A view of the data fields is provided below:
+
+```{r get data,warning=FALSE,message=FALSE,echo=FALSE}
+
+url <- 'http://siteresources.worldbank.org/INTRES/Resources'
+
+filename <- 'airpollution.xls'
+if (!file.exists(filename)) {
+ download.file(url,filename,method='curl')
+}
+ 
+worldpollution <- read_excel('airpollution.xls',sheet='pred pm10 country',skip=5)
+str(worldpollution)
+
+```
+
+    
+[Data source:] (http://siteresources.worldbank.org/INTRES/Resources)
+
+
+## 
+#### Plot
+
+```{r generate plot,warning=FALSE,message=FALSE,echo=FALSE}
+
+y <- list(title='pollution level')
+
+plot_ly(y= worldpollution$concentration, x=worldpollution$country,type = "scatter",color=worldpollution$concentration,size=worldpollution$concentration) %>%
+layout (yaxis=y,title='Pollution - pm10 level by country')
+
+
+```
+  
+  
+

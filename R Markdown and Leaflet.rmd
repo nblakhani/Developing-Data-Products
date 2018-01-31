@@ -1,0 +1,45 @@
+---
+title: 'Assignment: R Markdown & Leaflet'
+author: "N. Lakhani"
+date: "29 January 2018"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Executive Summary
+
+
+This report creates a web page featuring a map created with Leaflet. The webpage is hosted on RPubs and my GitHub page. As required, the map includes
+
+* an interactive map showing the cities I have visited
+
+
+### Customize map & render
+
+This section defines
+
+* creates map frame using Leaflet
+* populates it usign tiles and data provided in a dataframe - which includes all countries I have visited
+* renders the map below 
+
+
+```{r echo=FALSE,warning=FALSE,message=FALSE}
+
+library(leaflet)
+library(dplyr)
+
+df <- data.frame (lat=c(46,56,55,3,22.39,32,39,24,38,13,26,25,20,51,41,50,51),lng=c(2.2,-106,3.4,101,39,-97,21,46,35,103,30,55,78,10,12,4.4,19))
+myvisit <- c('France','Canada','UK','Malaysia','Hong Kong','Dallas','Greece','Saudi Arabia','Turkey','Singapore','Eygpt','Dubai','Delhi','Germany','Italy','Belgium','Poland')
+my_map <- df %>% leaflet() %>% addTiles() %>% addMarkers(popup=myvisit)      
+                                               
+ 
+
+my_map
+
+```
+
