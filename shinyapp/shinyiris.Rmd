@@ -8,7 +8,7 @@ output:
   slidy_presentation: default
 ---
 
-```{r setup, include=TRUE}
+```{r setup, include=TRUE,echo=FALSE }
 knitr::opts_chunk$set(echo = TRUE,message=FALSE,warning=FALSE,eval=FALSE)
 
 ```

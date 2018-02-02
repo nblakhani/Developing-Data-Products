@@ -97,8 +97,6 @@
           </hgroup>
   </slide>
 
-<pre class = 'prettyprint lang-r'>knitr::opts_chunk$set(echo = TRUE,message=FALSE,warning=FALSE,eval=FALSE)</pre>
-
 <slide class=''><hgroup><h2>Executive Summary</h2></hgroup><article  id="executive-summary">
 
 <p>The objective of this project is to create the following:</p>
@@ -135,7 +133,6 @@ fit &lt;- train (Species ~.,data=iris,method=&#39;rpart&#39;)</pre>
 <pre class = 'prettyprint lang-r'>userInput &lt;- data.frame(4.5,2.0,4.3,2.5)
 names(userInput)&lt;-c(&quot;Sepal.Width&quot;,&quot;Petal.Length&quot;, &quot;Petal.Width&quot;,&quot;Sepal.Length&quot;)
 predict(fit,newdata=userInput)
-png(&#39;classification.png&#39;)
 fancyRpartPlot(fit$finalModel)</pre></article></slide>
 
 
