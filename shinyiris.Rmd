@@ -1,0 +1,54 @@
+---
+title: "Predicting Iris Species - Coursera Project"
+author: "Narinder Lakhani"
+date: "2 February 2018"
+output:
+  ioslides_presentation: default
+  slidy_presentation: default
+---
+
+```{r setup, include=TRUE}
+knitr::opts_chunk$set(echo = TRUE,message=FALSE,warning=FALSE,eval=FALSE)
+```
+``
+
+## Executive Summary
+
+The objective of this project is to create the following:
+
+* A small application using the **Shiny** package
+* The application prompts user inputs for specific variables (which are also used in building the model) and predicts **Iris Species** using the **Rpart** model
+
+## Overview of the Application
+
+The following steps are followed in the Shiny application created: 
+
+* Load Iris data
+* Build the prediction model using the a) **Caret** package b) method **rpart** and, c) Iris dataset
+* The model is built using all variables in the iris dataset (formula: Species ~.). So, not be a completely optimized model
+
+```{r,eval=FALSE}
+library(caret)
+library(rpart.plot)
+library(rattle)
+data(iris)
+fit <- train (Species ~.,data=iris,method='rpart')
+```
+
+## Application: Inputs and Output
+
+* The Shiny application accepts Petal Length, Petal Width, Sepal Length and Sepal Width from the user. The user is prompted to press **submit** after the input is entered 
+* The app constructs a new data frame from user inputs for the predict function of the model created
+* The application finally outputs the predicted **Species** and the classification tree used to arrive at the Species prediction 
+
+
+```{r echo = TRUE}
+userInput <- data.frame(4.5,2.0,4.3,2.5)
+names(userInput)<-c("Sepal.Width","Petal.Length", "Petal.Width","Sepal.Length")
+predict(fit,newdata=userInput)
+png('classification.png')
+fancyRpartPlot(fit$finalModel)
+
+
+```
+
